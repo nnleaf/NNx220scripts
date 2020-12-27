@@ -61,7 +61,6 @@ then
     echo "---------------------------------"
     sudo hdparm -tT /dev/sda1
     sudo hdparm -tT /dev/sdb1
-    sudo hdparm -tT /dev/sdc1
   fi
   echo "--------------------------------------"
   echo "--[ Check SMART data on drives? (y/n) ]--"
@@ -74,7 +73,6 @@ then
     echo "---------------------------"
     sudo smartctl -a /dev/sda1
     sudo smartctl -a /dev/sdb1
-    sudo smartctl -a /dev/sdc1
   fi
 echo "--------------------------------"
   echo "--[ Run rkhunter scan? (y/n) ]--"
