@@ -1,0 +1,16 @@
+#!/bin/bash
+#     ////     //  ////     //
+#    // //    //  // //    //
+#   //  //   //  //  //   //
+#  //   //  //  //   //  //
+# //    // //  //    // //
+#//     ////  //     ////
+#
+#2020.05.20 - Created script to mount external backup
+#2020.12.27 - Pulled script from old NNx220
+#
+echo "-----------------------"
+echo "--[ Mounting backup ]--"
+echo "-----------------------"
+sudo cryptsetup open --type luks /dev/sdb NNRemoteBackup
+sudo mount /dev/mapper/NNRemoteBackup /media/nn/NNRemoteBackup
