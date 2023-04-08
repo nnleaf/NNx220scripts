@@ -8,9 +8,25 @@
 #
 #2020.05.20 - Created script to mount external backup
 #2020.12.27 - Pulled script from old NNx220
+#2023.04.05 - Modified for new mount, added unmount
 #
-echo "-----------------------"
-echo "--[ Mounting backup ]--"
-echo "-----------------------"
-sudo cryptsetup open --type luks /dev/sdb NNRemoteBackup
-sudo mount /dev/mapper/NNRemoteBackup /media/nn/NNRemoteBackup
+echo "----------------------------------"
+echo "--[ Mount NNRemoteBackup (y/n) ]--"
+echo "----------------------------------"
+read -p ""
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+  sudo cryptsetup open --type luks2 /dev/sdc1 NNRemoteBackup
+  sleep 5
+  sudo mount /dev/mapper/nnremotebackup_group-nnremotebackup /media/nn/NNRemoteBackup
+fi
+echo "------------------------------------"
+echo "--[ Unmount NNRemoteBackup (y/n) ]--"
+echo "------------------------------------"
+read -p ""
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+  sudo umount /media/nn/NNRemoteBackup
+  sudo cryptsetup luksClose nnremotebackup_group-nnremotebackup
+  sudo cryptsetup luksClose NNRemoteBackup
+fi
